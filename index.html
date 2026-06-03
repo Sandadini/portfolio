@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sandadini Bandara — Electronics & IT graduate specialising in Embedded Systems, Robotics, and IoT." />
   <title>Sandadini Bandara | Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,28 +11,60 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* ── Reset ───────────────────────────────────────────── */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    /* scroll-behavior belongs on html, not * */
+    html {
       scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #0f0f23;
-      color: #ffffff;
+      background: #ffffff;
+      color: #1e1b4b;
       line-height: 1.6;
     }
 
+    /* ── Background blur orbs (FIX: moved inside <style>) ── */
+    .bg-blur {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+    }
+
+    .blur1 {
+      width: 400px;
+      height: 400px;
+      background: #8b5cf6;
+      top: -100px;
+      left: -100px;
+      opacity: .15;
+    }
+
+    .blur2 {
+      width: 400px;
+      height: 400px;
+      background: #ec4899;
+      bottom: -100px;
+      right: -100px;
+      opacity: .15;
+    }
+
+    /* ── Nav ─────────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(15,15,35,0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
       z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
     }
 
     .nav-container {
@@ -56,7 +89,7 @@
     }
 
     nav a {
-      color: white;
+      color: #1e1b4b;
       text-decoration: none;
       transition: 0.3s;
     }
@@ -65,6 +98,7 @@
       color: #ec4899;
     }
 
+    /* ── Sections ────────────────────────────────────────── */
     section {
       padding: 120px 20px 80px;
     }
@@ -74,6 +108,7 @@
       margin: auto;
     }
 
+    /* ── Hero ────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -95,7 +130,7 @@
     }
 
     .hero-text p {
-      color: #cbd5e1;
+      color: #4b5563;
       margin-bottom: 30px;
       font-size: 1.1rem;
     }
@@ -123,19 +158,15 @@
       display: inline-block;
     }
 
+    /* FIX: removed stray closing brace that caused a syntax error */
     .btn-primary {
-        background: linear-gradient(
-            135deg,
-            #8b5cf6,
-            #ec4899
-        );
-        color:white;
-      }
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: white;
     }
 
     .btn-primary:hover {
       transform: translateY(-4px);
-      box-shadow:0 10px 30px rgba(236,72,153,.35);
+      box-shadow: 0 10px 30px rgba(236, 72, 153, .35);
     }
 
     .btn-outline {
@@ -154,43 +185,37 @@
       border-radius: 30px;
       display: block;
       margin: auto;
-      border: 2px solid rgba(255,255,255,0.1);
+      border: 2px solid rgba(139, 92, 246, 0.2);
       box-shadow: 0 20px 60px rgba(34, 211, 238, 0.25);
     }
 
+    /* ── Card ────────────────────────────────────────────── */
     .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #f8f7ff;
+      border: 1px solid rgba(139, 92, 246, 0.15);
       border-radius: 24px;
       padding: 35px;
       backdrop-filter: blur(10px);
     }
 
+    /* ── Headings ────────────────────────────────────────── */
     h2 {
       font-size: 2.8rem;
       margin-bottom: 40px;
       color: #8b5cf6;
     }
-      h2::after{
 
-       content:'';
-      
-       display:block;
-      
-       width:80px;
-      
-       height:4px;
-      
-       margin-top:12px;
-      
-       background:linear-gradient(
-           90deg,
-           #8b5cf6,
-           #ec4899
-       );
-      
-       border-radius:20px;
-      }
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      margin-top: 12px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      border-radius: 20px;
+    }
+
+    /* ── Projects ────────────────────────────────────────── */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -198,18 +223,18 @@
     }
 
     .project-card {
-      background: rgba(255,255,255,0.05);
+      background: #f8f7ff;
       backdrop-filter: blur(20px);
       border-radius: 24px;
       overflow: hidden;
       transition: 0.3s;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(139, 92, 246, 0.15);
     }
 
     .project-card:hover {
       transform: translateY(-8px);
-      border-color:#8b5cf6;
-      box-shadow:0 15px 40px rgba(139,92,246,.25);
+      border-color: #8b5cf6;
+      box-shadow: 0 15px 40px rgba(139, 92, 246, .25);
     }
 
     .project-card img {
@@ -228,7 +253,7 @@
     }
 
     .project-content p {
-      color: #cbd5e1;
+      color: #4b5563;
       margin-bottom: 20px;
     }
 
@@ -240,14 +265,15 @@
     }
 
     .tech-stack span {
-      background: rgba(34,211,238,0.1);
+      background: rgba(34, 211, 238, 0.1);
       color: #ec4899;
       padding: 8px 14px;
       border-radius: 30px;
       font-size: 0.85rem;
-      border: 1px solid rgba(34,211,238,0.3);
+      border: 1px solid rgba(34, 211, 238, 0.3);
     }
 
+    /* ── Skills & Activities ─────────────────────────────── */
     .skills-grid,
     .activities-grid {
       display: grid;
@@ -263,27 +289,48 @@
     .skills-grid li,
     .activities-grid li {
       margin-bottom: 12px;
-      color: #cbd5e1;
+      color: #4b5563;
     }
 
+    /* ── Contact ─────────────────────────────────────────── */
     .contact {
       text-align: center;
     }
 
     .contact p {
-      color: #cbd5e1;
+      color: #4b5563;
       max-width: 700px;
       margin: auto auto 30px;
     }
-    
+
+    /* ── Social Links ────────────────────────────────────── */
+    .social-links {
+      margin-top: 25px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: #ec4899;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .social-links a:hover {
+      color: white;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
     footer {
       text-align: center;
       padding: 30px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: #94a3b8;
+      border-top: 1px solid rgba(139, 92, 246, 0.15);
+      color: #6b7280;
     }
 
-    @media(max-width: 768px) {
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 768px) {
       .hero-text h1 {
         font-size: 2.8rem;
       }
@@ -293,25 +340,13 @@
         font-size: 0.9rem;
       }
     }
-    .social-links{
-  margin-top:25px;
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.social-links a{
-  color:#ec4899;
-  text-decoration:none;
-  font-weight:500;
-}
-
-.social-links a:hover{
-  color:white;
-}
   </style>
 </head>
 <body>
+
+  <!-- Background blur orbs -->
+  <div class="bg-blur blur1"></div>
+  <div class="bg-blur blur2"></div>
 
   <nav>
     <div class="nav-container">
@@ -341,16 +376,10 @@
           Electronics and Information Technology graduate from the University of Colombo with practical experience in embedded systems, robotics, automation, PCB design, and IoT development.
         </p>
 
-        <div class="btn-group">    
-          <a href="cv/Sandadini_Bandara_CV.pdf"
-             download
-             class="btn btn-outline">
-             Download CV
-          </a>
+        <div class="btn-group">
+          <a href="cv/Sandadini_Bandara_CV.pdf" download class="btn btn-outline">Download CV</a>
           <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-outline">
-             Contact Me
-          </a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
       </div>
 
@@ -365,242 +394,176 @@
     <div class="container">
       <div class="card">
         <h2>About Me</h2>
-
         <p>
           I am passionate about developing innovative embedded systems and intelligent hardware solutions that combine electronics, automation, robotics, and software engineering. My experience includes PCB design, machine learning based embedded systems, GSM communication systems, robotics competitions, and IoT development.
         </p>
       </div>
     </div>
   </section>
-<section id="education">
-  <div class="container">
-    <div class="card">
-      <h2>Education</h2>
 
-      <div style="margin-bottom: 25px;">
-        <h3 style="color:#ec4899; margin-bottom:10px;">
-          University of Colombo
-        </h3>
+  <section id="education">
+    <div class="container">
+      <div class="card">
+        <h2>Education</h2>
 
-        <p style="color:#cbd5e1;">
-          BSc (Hons) in Electronics and Information Technology
-        </p>
-
-        <p style="color:#94a3b8;">
-          2022 – 2026
-        </p>
-
-        <p style="margin-top:15px; color:#cbd5e1;">
-          Relevant Coursework: Embedded Systems, Robotics & Automation,
-          Power Electronics, Circuit Design & Simulation, Industrial
-          Automation, Internet Technologies, Data Structures &
-          Algorithms, Database Systems, Software Engineering.
-        </p>
+        <div style="margin-bottom: 25px;">
+          <h3 style="color:#ec4899; margin-bottom:10px;">University of Colombo</h3>
+          <p style="color:#4b5563;">BSc (Hons) in Electronics and Information Technology</p>
+          <p style="color:#6b7280;">2022 – 2026</p>
+          <p style="margin-top:15px; color:#4b5563;">
+            Relevant Coursework: Embedded Systems, Robotics & Automation,
+            Power Electronics, Circuit Design & Simulation, Industrial
+            Automation, Internet Technologies, Data Structures &
+            Algorithms, Database Systems, Software Engineering.
+          </p>
+        </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
   <section id="experience">
-  <div class="container">
-    <div class="card">
-      <h2>Professional Experience</h2>
+    <div class="container">
+      <div class="card">
+        <h2>Professional Experience</h2>
 
-      <div>
-        <h3 style="color:#ec4899; margin-bottom:10px;">
-          Sri Lanka Telecom — Electronics & IT Intern
-        </h3>
+        <div>
+          <h3 style="color:#ec4899; margin-bottom:10px;">Sri Lanka Telecom — Electronics & IT Intern</h3>
+          <p style="color:#6b7280; margin-bottom:20px;">2024</p>
 
-        <p style="color:#94a3b8; margin-bottom:20px;">
-          2024
-        </p>
-
-        <ul style="padding-left:20px; color:#cbd5e1;">
-          <li style="margin-bottom:12px;">
-            Designed and debugged schematic diagrams and PCB layouts using EasyEDA.
-          </li>
-
-          <li style="margin-bottom:12px;">
-            Programmed embedded microcontroller systems with GSM integration for real-time alerts.
-          </li>
-
-          <li style="margin-bottom:12px;">
-            Performed hardware testing and signal verification using oscilloscopes, multimeters, and logic analysers.
-          </li>
-
-          <li style="margin-bottom:12px;">
-            Supported hardware-software integration activities for embedded devices in telecom environments.
-          </li>
-
-          <li style="margin-bottom:12px;">
-            Collaborated with technical teams on embedded system validation and fault resolution.
-          </li>
-        </ul>
+          <ul style="padding-left:20px; color:#4b5563;">
+            <li style="margin-bottom:12px;">Designed and debugged schematic diagrams and PCB layouts using EasyEDA.</li>
+            <li style="margin-bottom:12px;">Programmed embedded microcontroller systems with GSM integration for real-time alerts.</li>
+            <li style="margin-bottom:12px;">Performed hardware testing and signal verification using oscilloscopes, multimeters, and logic analysers.</li>
+            <li style="margin-bottom:12px;">Supported hardware-software integration activities for embedded devices in telecom environments.</li>
+            <li style="margin-bottom:12px;">Collaborated with technical teams on embedded system validation and fault resolution.</li>
+          </ul>
+        </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
+
   <section id="projects">
-  <div class="container">
-    <h2>Featured Projects</h2>
+    <div class="container">
+      <h2>Featured Projects</h2>
 
-    <div class="projects-grid">
+      <div class="projects-grid">
 
-      <div class="project-card">
-        <img src="images/underground.png" alt="Underground Wire Detecting Robot">
-        <div class="project-content">
-          <h3>Underground Wire Detecting Robot</h3>
-          <p>Developed a mobile robot using ATmega328p and magnetometer sensors for underground wire detection with real-time visualization.</p>
-
-          <div class="tech-stack">
-            <span>ATmega328p</span>
-            <span>C</span>
-            <span>Python</span>
-            <span>Embedded Systems</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/Sandadini/Underground_Wire_Detector_Robot" class="btn btn-primary">GitHub</a>
-            <a href="presentations/Wire Detection Robot.pptx" class="btn btn-outline">Presentation</a>
+        <div class="project-card">
+          <img src="images/underground.png" alt="Underground Wire Detecting Robot">
+          <div class="project-content">
+            <h3>Underground Wire Detecting Robot</h3>
+            <p>Developed a mobile robot using ATmega328p and magnetometer sensors for underground wire detection with real-time visualization.</p>
+            <div class="tech-stack">
+              <span>ATmega328p</span><span>C</span><span>Python</span><span>Embedded Systems</span>
+            </div>
+            <div class="btn-group">
+              <a href="https://github.com/Sandadini/Underground_Wire_Detector_Robot" class="btn btn-primary">GitHub</a>
+              <a href="presentations/Wire Detection Robot.pptx" class="btn btn-outline">Presentation</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/underwater.jpg" alt="Underwater Explorer Robot">
-        <div class="project-content">
-          <h3>Underwater Explorer</h3>
-          <p>Built an underwater exploration robot powered by Raspberry Pi 4 with live video streaming and temperature monitoring.</p>
-
-          <div class="tech-stack">
-            <span>Raspberry Pi</span>
-            <span>Python</span>
-            <span>IoT</span>
-            <span>Robotics</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/Sandadini/Underwater-Inspection-Rover-using-Raspberry-Pi" class="btn btn-primary">GitHub</a>
-            <a href="presentations/Underwater_Rover_Presentation.pptx" class="btn btn-outline">Presentation</a>
+        <div class="project-card">
+          <img src="images/underwater.jpg" alt="Underwater Explorer Robot">
+          <div class="project-content">
+            <h3>Underwater Explorer</h3>
+            <p>Built an underwater exploration robot powered by Raspberry Pi 4 with live video streaming and temperature monitoring.</p>
+            <div class="tech-stack">
+              <span>Raspberry Pi</span><span>Python</span><span>IoT</span><span>Robotics</span>
+            </div>
+            <div class="btn-group">
+              <a href="https://github.com/Sandadini/Underwater-Inspection-Rover-using-Raspberry-Pi" class="btn btn-primary">GitHub</a>
+              <a href="presentations/Underwater_Rover_Presentation.pptx" class="btn btn-outline">Presentation</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/voice.jpg" alt="Voice Emergency System">
-        <div class="project-content">
-          <h3>Voice-Activated Emergency Alert System</h3>
-          <p>Designed a smart emergency alert system using Edge Impulse, Arduino Nano 33 BLE, and GSM SIM900.</p>
-
-          <div class="tech-stack">
-            <span>Arduino</span>
-            <span>Edge Impulse</span>
-            <span>Machine Learning</span>
-            <span>GSM</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="presentations/Voice-Activated-Emergency-Alert-System.pptx" class="btn btn-outline">Presentation</a>
+        <div class="project-card">
+          <img src="images/voice.jpg" alt="Voice Emergency System">
+          <div class="project-content">
+            <h3>Voice-Activated Emergency Alert System</h3>
+            <p>Designed a smart emergency alert system using Edge Impulse, Arduino Nano 33 BLE, and GSM SIM900.</p>
+            <div class="tech-stack">
+              <span>Arduino</span><span>Edge Impulse</span><span>Machine Learning</span><span>GSM</span>
+            </div>
+            <div class="btn-group">
+              <a href="presentations/Voice-Activated-Emergency-Alert-System.pptx" class="btn btn-outline">Presentation</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/citylink.jpg" alt="CityLink App">
-        <div class="project-content">
-          <h3>CityLink Smart Transport App</h3>
-          <p>Created a React Native application for seat booking, QR scanning, and real-time tracking.</p>
-
-          <div class="tech-stack">
-            <span>React Native</span>
-            <span>Node.js</span>
-            <span>MySQL</span>
-            <span>Figma</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/Sandadini/CityLink_FrontEnd" class="btn btn-primary">GitHub</a>
+        <div class="project-card">
+          <img src="images/citylink.jpg" alt="CityLink App">
+          <div class="project-content">
+            <h3>CityLink Smart Transport App</h3>
+            <p>Created a React Native application for seat booking, QR scanning, and real-time tracking.</p>
+            <div class="tech-stack">
+              <span>React Native</span><span>Node.js</span><span>MySQL</span><span>Figma</span>
+            </div>
+            <div class="btn-group">
+              <a href="https://github.com/Sandadini/CityLink_FrontEnd" class="btn btn-primary">GitHub</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/attendance.jpg" alt="Attendance System">
-        <div class="project-content">
-          <h3>Attendance Management System</h3>
-          <p>Web-based attendance system using Java, PHP, and CodeIgniter with real-time updates.</p>
-
-          <div class="tech-stack">
-            <span>Java</span>
-            <span>PHP</span>
-            <span>CodeIgniter</span>
-            <span>MySQL</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/Sandadini/Attendance-Management-System" class="btn btn-primary">GitHub</a>
-            <a href="presentations/Student Attendance System.pptx" class="btn btn-outline">Presentation</a>
+        <div class="project-card">
+          <img src="images/attendance.jpg" alt="Attendance System">
+          <div class="project-content">
+            <h3>Attendance Management System</h3>
+            <p>Web-based attendance system using Java, PHP, and CodeIgniter with real-time updates.</p>
+            <div class="tech-stack">
+              <span>Java</span><span>PHP</span><span>CodeIgniter</span><span>MySQL</span>
+            </div>
+            <div class="btn-group">
+              <a href="https://github.com/Sandadini/Attendance-Management-System" class="btn btn-primary">GitHub</a>
+              <a href="presentations/Student Attendance System.pptx" class="btn btn-outline">Presentation</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/specializedu.jpg" alt="Special Selection App">
-        <div class="project-content">
-          <h3>Special Selection Mobile Application</h3>
-          <p>Android app that automates student selection workflows and exports CSV results.</p>
-
-          <div class="tech-stack">
-            <span>Java</span>
-            <span>Android Studio</span>
-            <span>CSV Export</span>
-            <span>Mobile Development</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="https://github.com/Sandadini/SpecializedU-Student-Specialization-Automation" class="btn btn-primary">GitHub</a>
+        <div class="project-card">
+          <img src="images/specializedu.jpg" alt="Special Selection App">
+          <div class="project-content">
+            <h3>Special Selection Mobile Application</h3>
+            <p>Android app that automates student selection workflows and exports CSV results.</p>
+            <div class="tech-stack">
+              <span>Java</span><span>Android Studio</span><span>CSV Export</span><span>Mobile Development</span>
+            </div>
+            <div class="btn-group">
+              <a href="https://github.com/Sandadini/SpecializedU-Student-Specialization-Automation" class="btn btn-primary">GitHub</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/roadpaint.jpg" alt="Road Safety Case Study">
-        <div class="project-content">
-          <h3>Glowing Road-Marking Paint — Case Study</h3>
-          <p>Research on nano-silicon beads in luminescent paint for road safety improvement.</p>
-
-          <div class="tech-stack">
-            <span>Research</span>
-            <span>Nanotechnology</span>
-            <span>Road Safety</span>
-            <span>Sustainability</span>
-          </div>
-
-          <div class="btn-group">
-            <a href="docs/case study report.pdf" class="btn btn-primary">Report</a>
+        <div class="project-card">
+          <img src="images/roadpaint.jpg" alt="Road Safety Case Study">
+          <div class="project-content">
+            <h3>Glowing Road-Marking Paint — Case Study</h3>
+            <p>Research on nano-silicon beads in luminescent paint for road safety improvement.</p>
+            <div class="tech-stack">
+              <span>Research</span><span>Nanotechnology</span><span>Road Safety</span><span>Sustainability</span>
+            </div>
+            <div class="btn-group">
+              <a href="docs/case study report.pdf" class="btn btn-primary">Report</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/linefollower.png" alt="Line Following Robot">
-        <div class="project-content">
-          <h3>Line Following Robot</h3>
-          <p>Autonomous robot using Arduino with Python-based performance analysis.</p>
-
-          <div class="tech-stack">
-            <span>Arduino</span>
-            <span>Python</span>
-            <span>Robotics</span>
-            <span>Embedded Systems</span>
+        <div class="project-card">
+          <img src="images/linefollower.png" alt="Line Following Robot">
+          <div class="project-content">
+            <h3>Line Following Robot</h3>
+            <p>Autonomous robot using Arduino with Python-based performance analysis.</p>
+            <div class="tech-stack">
+              <span>Arduino</span><span>Python</span><span>Robotics</span><span>Embedded Systems</span>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <section id="skills">
     <div class="container">
       <div class="card">
@@ -696,43 +659,6 @@
   <footer>
     © 2026 Sandadini Bandara • Embedded Systems • Robotics • IoT
   </footer>
-  <div class="bg-blur blur1"></div>
-  <div class="bg-blur blur2"></div>
+
 </body>
 </html>
-.bg-blur{
-
-position:fixed;
-
-border-radius:50%;
-
-filter:blur(120px);
-
-z-index:-1;
-}
-
-.blur1{
-
-width:400px;
-height:400px;
-
-background:#8b5cf6;
-
-top:-100px;
-left:-100px;
-
-opacity:.15;
-}
-
-.blur2{
-
-width:400px;
-height:400px;
-
-background:#ec4899;
-
-bottom:-100px;
-right:-100px;
-
-opacity:.15;
-}
