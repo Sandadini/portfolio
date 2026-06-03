@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website!
 
-This portfolio showcases my background, technical skills, projects, and achievements as an Electronics and Telecommunication Engineering undergraduate with a passion for Embedded Systems, IoT, Robotics, and Software Development.
+This portfolio showcases my background, technical skills, projects, and achievements as an Electronics and IT graduate with a passion for Embedded Systems, IoT, Robotics, and Software Development.
 
 ## 🚀 Live Website
 
@@ -12,7 +12,7 @@ Visit my portfolio here:
 
 ## 👩‍💻 About Me
 
-I am **Sandadini Bandara**, an Electronics and Telecommunication Engineering undergraduate at the University of Moratuwa. I enjoy building innovative solutions that combine hardware and software, with interests in:
+I am **Sandadini Bandara**, an Electronics and Information Technology graduate at the University of Colombo. I enjoy building innovative solutions that combine hardware and software, with interests in:
 
 * Embedded Systems
 * Internet of Things (IoT)
