@@ -8,352 +8,437 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Reset ───────────────────────────────────────────── */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #ede9fe;
+      --purple-mid: #a78bfa;
+      --pink: #db2777;
+      --pink-light: #fce7f3;
+      --dark: #1e1b4b;
+      --body: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --bg-alt: #fafafa;
+      --bg-card: #f9f8ff;
     }
 
-    /* scroll-behavior belongs on html, not * */
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #1e1b4b;
-      line-height: 1.6;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.7;
     }
 
-    /* ── Background blur orbs (FIX: moved inside <style>) ── */
-    .bg-blur {
+    /* ── Ambient orbs ── */
+    .orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(120px);
+      filter: blur(100px);
       z-index: -1;
+      pointer-events: none;
     }
+    .orb-1 { width:500px;height:500px;background:#7c3aed;top:-180px;left:-180px;opacity:.07; }
+    .orb-2 { width:400px;height:400px;background:#db2777;bottom:-120px;right:-120px;opacity:.07; }
+    .orb-3 { width:300px;height:300px;background:#7c3aed;top:50%;left:60%;opacity:.04; }
 
-    .blur1 {
-      width: 400px;
-      height: 400px;
-      background: #8b5cf6;
-      top: -100px;
-      left: -100px;
-      opacity: .15;
-    }
-
-    .blur2 {
-      width: 400px;
-      height: 400px;
-      background: #ec4899;
-      bottom: -100px;
-      right: -100px;
-      opacity: .15;
-    }
-
-    /* ── Nav ─────────────────────────────────────────────── */
+    /* ── Nav ── */
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
+      position: fixed; top:0; width:100%;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
-      border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+      transition: box-shadow .3s;
     }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+    .nav-inner {
+      max-width: 1200px; margin: auto;
+      padding: 18px 24px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
     .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #8b5cf6;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--purple);
+      letter-spacing: -.5px;
     }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-
+    .logo span { color: var(--pink); }
+    nav ul { display:flex; list-style:none; gap:8px; }
     nav a {
-      color: #1e1b4b;
+      color: var(--dark);
       text-decoration: none;
-      transition: 0.3s;
+      font-size: .875rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: .2s;
+    }
+    nav a:hover { background: var(--purple-light); color: var(--purple); }
+
+    /* ── Layout ── */
+    .section { padding: 100px 24px 70px; }
+    .container { max-width: 1100px; margin: auto; }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .section-title em { font-style: italic; color: var(--purple); }
+    .section-divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      border-radius: 99px;
+      margin-bottom: 48px;
     }
 
-    nav a:hover {
-      color: #ec4899;
-    }
-
-    /* ── Sections ────────────────────────────────────────── */
-    section {
-      padding: 120px 20px 80px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    /* ── Hero ────────────────────────────────────────────── */
+    /* ── Hero ── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 24px;
+      background: linear-gradient(145deg, #fdfcff 0%, #f5f0ff 50%, #fff0f7 100%);
     }
-
-    .hero-content {
+    .hero-inner {
+      max-width: 1100px; width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 60px;
-      align-items: center;
+      grid-template-columns: 1fr 420px;
+      gap: 80px; align-items: center;
     }
-
-    .hero-text h1 {
-      font-size: 4rem;
-      line-height: 1.1;
-      margin-bottom: 20px;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--purple-light);
+      color: var(--purple);
+      font-size: .8rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 99px;
+      margin-bottom: 24px;
     }
-
-    .hero-text p {
-      color: #4b5563;
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-
-    .tag {
-      color: #8b5cf6;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 15px;
-      font-size: 0.85rem;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
+    .hero-eyebrow::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--purple);
+      border-radius: 50%;
       display: inline-block;
     }
-
-    /* FIX: removed stray closing brace that caused a syntax error */
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.8rem; line-height: 1.05;
+      color: var(--dark); margin-bottom: 24px;
+    }
+    .hero-title em { color: var(--purple); font-style: italic; }
+    .hero-desc { color: var(--body); font-size: 1.05rem; margin-bottom: 36px; max-width: 520px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 13px 26px; border-radius: 12px;
+      font-weight: 600; font-size: .9rem;
+      text-decoration: none; display: inline-block;
+      transition: .25s; cursor: pointer;
+    }
     .btn-primary {
-      background: linear-gradient(135deg, #8b5cf6, #ec4899);
-      color: white;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: white; border: none;
+      box-shadow: 0 4px 20px rgba(124,58,237,.25);
     }
-
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(236, 72, 153, .35);
-    }
-
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(124,58,237,.35); }
     .btn-outline {
-      border: 2px solid #8b5cf6;
-      color: #8b5cf6;
+      border: 2px solid var(--purple); color: var(--purple); background: transparent;
     }
-
-    .btn-outline:hover {
-      background: #8b5cf6;
-      color: white;
+    .btn-outline:hover { background: var(--purple); color: white; }
+    .btn-ghost {
+      border: 1.5px solid var(--border); color: var(--muted); background: white;
     }
+    .btn-ghost:hover { border-color: var(--purple); color: var(--purple); }
 
-    .hero-image img {
-      width: 100%;
-      max-width: 380px;
-      border-radius: 30px;
-      display: block;
-      margin: auto;
-      border: 2px solid rgba(139, 92, 246, 0.2);
-      box-shadow: 0 20px 60px rgba(34, 211, 238, 0.25);
+    /* Hero image */
+    .hero-image-wrap {
+      position: relative;
     }
-
-    /* ── Card ────────────────────────────────────────────── */
-    .card {
-      background: #f8f7ff;
-      border: 1px solid rgba(139, 92, 246, 0.15);
-      border-radius: 24px;
-      padding: 35px;
-      backdrop-filter: blur(10px);
-    }
-
-    /* ── Headings ────────────────────────────────────────── */
-    h2 {
-      font-size: 2.8rem;
-      margin-bottom: 40px;
-      color: #8b5cf6;
-    }
-
-    h2::after {
+    .hero-image-wrap::before {
       content: '';
+      position: absolute; inset: -16px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
+      z-index: 0;
+    }
+    .hero-image-wrap img {
+      position: relative; z-index: 1;
+      width: 100%; border-radius: 28px;
       display: block;
-      width: 80px;
-      height: 4px;
-      margin-top: 12px;
-      background: linear-gradient(90deg, #8b5cf6, #ec4899);
-      border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(124,58,237,.18);
     }
+    .hero-badge {
+      position: absolute; z-index: 2;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      font-size: .8rem; font-weight: 600;
+      color: var(--dark);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-badge .dot { width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+    .badge-tl { top: -20px; left: -20px; }
+    .badge-br { bottom: -16px; right: -20px; }
 
-    /* ── Projects ────────────────────────────────────────── */
+    /* ── About ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px;
+    }
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 24px;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--purple); line-height: 1;
+    }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+    .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+    .highlight-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 18px 20px;
+    }
+    .hi-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--purple-light);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .hi-title { font-weight: 600; font-size: .9rem; color: var(--dark); }
+    .hi-desc { font-size: .82rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Timeline (Education & Experience) ── */
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 10px; top: 6px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--purple), var(--pink-light));
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 48px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -30px; top: 6px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: white;
+      border: 3px solid var(--purple);
+      box-shadow: 0 0 0 4px var(--purple-light);
+    }
+    .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+    .tl-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--dark); }
+    .tl-org { font-size: .9rem; font-weight: 600; color: var(--purple); margin-bottom: 4px; }
+    .tl-period {
+      font-size: .78rem; font-weight: 600;
+      color: var(--purple);
+      background: var(--purple-light);
+      padding: 4px 12px; border-radius: 99px;
+      white-space: nowrap;
+    }
+    .tl-body { color: var(--body); font-size: .92rem; }
+    .tl-body p { margin-bottom: 12px; }
+    .tl-body ul { padding-left: 18px; }
+    .tl-body li { margin-bottom: 8px; font-size: .9rem; }
+
+    /* ── Skills ── */
+    .skills-wrapper {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+    }
+    .skill-group-title {
+      font-weight: 700; font-size: .85rem;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--purple); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-group-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--purple-light);
+    }
+    .skill-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: white;
+      border: 1.5px solid var(--border);
+      color: var(--dark); font-size: .82rem; font-weight: 500;
+      padding: 6px 14px; border-radius: 99px;
+      margin: 4px; transition: .2s;
+    }
+    .skill-tag:hover { border-color: var(--purple); color: var(--purple); }
+
+    /* ── Projects ── */
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px;
     }
-
     .project-card {
-      background: #f8f7ff;
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: 0.3s;
-      border: 1px solid rgba(139, 92, 246, 0.15);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      transition: .3s;
+      display: flex; flex-direction: column;
     }
-
     .project-card:hover {
-      transform: translateY(-8px);
-      border-color: #8b5cf6;
-      box-shadow: 0 15px 40px rgba(139, 92, 246, .25);
+      border-color: var(--purple-mid);
+      box-shadow: 0 12px 40px rgba(124,58,237,.12);
+      transform: translateY(-6px);
+    }
+    .project-img {
+      width: 100%; height: 200px; object-fit: cover;
+      background: var(--purple-light);
+    }
+    .project-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .project-cat {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 8px;
+    }
+    .project-title { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--dark); margin-bottom: 10px; }
+    .project-desc { font-size: .875rem; color: var(--muted); margin-bottom: 16px; flex: 1; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .tech-tag {
+      font-size: .72rem; font-weight: 600;
+      background: var(--purple-light); color: var(--purple);
+      padding: 4px 10px; border-radius: 99px;
+    }
+    .project-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .link-btn {
+      font-size: .8rem; font-weight: 600; padding: 8px 16px;
+      border-radius: 10px; text-decoration: none; transition: .2s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .link-btn-primary {
+      background: var(--purple); color: white;
+    }
+    .link-btn-primary:hover { background: #6d28d9; }
+    .link-btn-outline {
+      border: 1.5px solid var(--border); color: var(--muted);
+    }
+    .link-btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+
+    /* ── Achievements ── */
+    .ach-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .ach-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+    }
+    .ach-card-title {
+      font-weight: 700; font-size: .8rem;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--purple); margin-bottom: 18px;
+    }
+    .ach-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 14px; font-size: .9rem; color: var(--body);
+    }
+    .ach-item::before {
+      content: '→';
+      color: var(--purple); font-weight: 700; flex-shrink: 0; margin-top: 1px;
     }
 
-    .project-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
     }
-
-    .project-content {
-      padding: 25px;
+    .contact-card {
+      background: linear-gradient(135deg, var(--purple), #6d28d9, var(--pink));
+      border-radius: 28px; padding: 48px;
+      color: white; text-align: center;
     }
-
-    .project-content h3 {
-      margin-bottom: 15px;
-      color: #ec4899;
+    .contact-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.9rem; margin-bottom: 12px;
     }
-
-    .project-content p {
-      color: #4b5563;
-      margin-bottom: 20px;
+    .contact-card p { opacity: .85; margin-bottom: 28px; font-size: .95rem; }
+    .contact-link-list { list-style: none; }
+    .contact-link-list li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .9rem;
     }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+    .contact-link-list li:last-child { border-bottom: none; }
+    .cli-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--purple-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
     }
+    .cli-label { font-size: .75rem; color: var(--muted); }
+    .cli-value { font-weight: 600; color: var(--dark); font-size: .9rem; }
+    .cli-value a { color: inherit; text-decoration: none; }
+    .cli-value a:hover { color: var(--purple); }
 
-    .tech-stack span {
-      background: rgba(34, 211, 238, 0.1);
-      color: #ec4899;
-      padding: 8px 14px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      border: 1px solid rgba(34, 211, 238, 0.3);
-    }
-
-    /* ── Skills & Activities ─────────────────────────────── */
-    .skills-grid,
-    .activities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .skills-grid ul,
-    .activities-grid ul {
-      list-style: none;
-    }
-
-    .skills-grid li,
-    .activities-grid li {
-      margin-bottom: 12px;
-      color: #4b5563;
-    }
-
-    /* ── Contact ─────────────────────────────────────────── */
-    .contact {
-      text-align: center;
-    }
-
-    .contact p {
-      color: #4b5563;
-      max-width: 700px;
-      margin: auto auto 30px;
-    }
-
-    /* ── Social Links ────────────────────────────────────── */
-    .social-links {
-      margin-top: 25px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .social-links a {
-      color: #ec4899;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .social-links a:hover {
-      color: white;
-    }
-
-    /* ── Footer ──────────────────────────────────────────── */
+    /* ── Footer ── */
     footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(139, 92, 246, 0.15);
-      color: #6b7280;
+      text-align: center; padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .85rem;
     }
 
-    /* ── Responsive ──────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .hero-text h1 {
-        font-size: 2.8rem;
-      }
-
-      nav ul {
-        gap: 15px;
-        font-size: 0.9rem;
-      }
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-image-wrap { max-width: 360px; margin: auto; }
+      .hero-title { font-size: 2.8rem; }
+      .about-grid, .contact-grid, .ach-grid { grid-template-columns: 1fr; }
+      .skills-wrapper { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-title { font-size: 2rem; }
+      .skills-wrapper { grid-template-columns: 1fr; }
+      nav ul { gap: 4px; }
+      nav a { padding: 5px 9px; font-size: .8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background blur orbs -->
-  <div class="bg-blur blur1"></div>
-  <div class="bg-blur blur2"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
-  <nav>
-    <div class="nav-container">
-      <div class="logo">Sandadini Bandara</div>
-
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="logo">Sandadini<span>.</span></div>
       <ul>
         <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -364,199 +449,266 @@
     </div>
   </nav>
 
+  <!-- ── HERO ── -->
   <section class="hero" id="home">
-    <div class="container hero-content">
-
-      <div class="hero-text">
-        <p class="tag">Embedded Systems • Robotics • IoT</p>
-
-        <h1>Building Intelligent Embedded Solutions</h1>
-
-        <p>
-          Electronics and Information Technology graduate from the University of Colombo with practical experience in embedded systems, robotics, automation, PCB design, and IoT development.
-        </p>
-
-        <div class="btn-group">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">Embedded Systems · Robotics · IoT</div>
+        <h1 class="hero-title">Building <em>Intelligent</em><br>Embedded Solutions</h1>
+        <p class="hero-desc">Electronics and Information Technology graduate from the University of Colombo — passionate about hardware-software integration, PCB design, and intelligent automation systems.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
           <a href="docs/Sandadini_Bandara_CV.pdf" download class="btn btn-outline">Download CV</a>
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
         </div>
       </div>
-
-      <div class="hero-image">
-        <img src="images/profilepic.png" alt="Profile Image">
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="card">
-        <h2>About Me</h2>
-        <p>
-          I am passionate about developing innovative embedded systems and intelligent hardware solutions that combine electronics, automation, robotics, and software engineering. My experience includes PCB design, machine learning based embedded systems, GSM communication systems, robotics competitions, and IoT development.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="container">
-      <div class="card">
-        <h2>Education</h2>
-
-        <div style="margin-bottom: 25px;">
-          <h3 style="color:#ec4899; margin-bottom:10px;">University of Colombo</h3>
-          <p style="color:#4b5563;">BSc (Hons) in Electronics and Information Technology</p>
-          <p style="color:#6b7280;">2022 – 2026</p>
-          <p style="margin-top:15px; color:#4b5563;">
-            Relevant Coursework: Embedded Systems, Robotics & Automation,
-            Power Electronics, Circuit Design & Simulation, Industrial
-            Automation, Internet Technologies, Data Structures &
-            Algorithms, Database Systems, Software Engineering.
-          </p>
+      <div class="hero-image-wrap">
+        <div class="hero-badge badge-tl">
+          <span class="dot"></span> Open to Opportunities
         </div>
+        <img src="images/profilepic.png" alt="Sandadini Bandara">
+        <div class="hero-badge badge-br">🎓 BSc Electronics & IT</div>
       </div>
     </div>
   </section>
 
-  <section id="experience">
+  <!-- ── ABOUT ── -->
+  <section class="section" id="about">
     <div class="container">
-      <div class="card">
-        <h2>Professional Experience</h2>
-
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title">About <em>Me</em></h2>
+      <div class="section-divider"></div>
+      <div class="about-grid">
         <div>
-          <h3 style="color:#ec4899; margin-bottom:10px;">Sri Lanka Telecom — Electronics & IT Intern</h3>
-          <p style="color:#6b7280; margin-bottom:20px;">2024</p>
-
-          <ul style="padding-left:20px; color:#4b5563;">
-            <li style="margin-bottom:12px;">Designed and debugged schematic diagrams and PCB layouts using EasyEDA.</li>
-            <li style="margin-bottom:12px;">Programmed embedded microcontroller systems with GSM integration for real-time alerts.</li>
-            <li style="margin-bottom:12px;">Performed hardware testing and signal verification using oscilloscopes, multimeters, and logic analysers.</li>
-            <li style="margin-bottom:12px;">Supported hardware-software integration activities for embedded devices in telecom environments.</li>
-            <li style="margin-bottom:12px;">Collaborated with technical teams on embedded system validation and fault resolution.</li>
-          </ul>
+          <p style="font-size:1rem;line-height:1.8;color:var(--body);margin-bottom:20px;">
+            I am passionate about developing innovative embedded systems and intelligent hardware solutions that combine electronics, automation, robotics, and software engineering.
+          </p>
+          <p style="font-size:1rem;line-height:1.8;color:var(--body);">
+            My experience spans PCB design, machine learning-based embedded systems, GSM communication, robotics competitions, and full-stack IoT development. I thrive at the intersection of hardware and software.
+          </p>
+          <div class="about-stats">
+            <div class="stat-box"><div class="stat-num">8+</div><div class="stat-label">Projects Completed</div></div>
+            <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Platforms Mastered</div></div>
+            <div class="stat-box"><div class="stat-num">6+</div><div class="stat-label">Languages</div></div>
+            <div class="stat-box"><div class="stat-num">2026</div><div class="stat-label">Graduating</div></div>
+          </div>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="hi-icon">🔧</div>
+            <div>
+              <div class="hi-title">Hardware Design</div>
+              <div class="hi-desc">PCB design & debugging with EasyEDA, oscilloscopes, and logic analysers</div>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-icon">🤖</div>
+            <div>
+              <div class="hi-title">Robotics & Automation</div>
+              <div class="hi-desc">Mobile robots, underwater rovers, and autonomous line-following systems</div>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-icon">🧠</div>
+            <div>
+              <div class="hi-title">Edge AI & ML</div>
+              <div class="hi-desc">TinyML on Edge Impulse with Arduino Nano 33 BLE for real-world deployments</div>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="hi-icon">🌐</div>
+            <div>
+              <div class="hi-title">IoT & Connectivity</div>
+              <div class="hi-desc">GSM/SIM900 integration, Raspberry Pi IoT dashboards, and sensor networks</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects">
+  <!-- ── EDUCATION ── -->
+  <section class="section" id="education" style="background:var(--bg-alt);">
     <div class="container">
-      <h2>Featured Projects</h2>
+      <p class="section-label">Academic Background</p>
+      <h2 class="section-title">My <em>Education</em></h2>
+      <div class="section-divider"></div>
+      <div class="timeline">
 
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header">
+            <div>
+              <div class="tl-org">University of Colombo</div>
+              <div class="tl-title">BSc (Hons) in Electronics and Information Technology</div>
+            </div>
+            <span class="tl-period">2022 – 2026</span>
+          </div>
+          <div class="tl-body">
+            <p>Pursuing a four-year honours degree with a strong focus on embedded systems, hardware design, and intelligent automation. Consistently engaged in hands-on project work beyond coursework.</p>
+            <p><strong style="color:var(--dark);">Relevant Coursework:</strong> Embedded Systems, Robotics & Automation, Power Electronics, Circuit Design & Simulation, Industrial Automation, Internet Technologies, Data Structures & Algorithms, Database Systems, Software Engineering.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header">
+            <div>
+              <div class="tl-org">Sanghamiththa Balika Vidyalaya, Galle</div>
+              <div class="tl-title">Secondary Education — G.C.E. Advanced Level</div>
+            </div>
+            <span class="tl-period">2007 – 2020</span>
+          </div>
+          <div class="tl-body">
+            <p>Completed primary and secondary schooling at one of Sri Lanka's leading girls' schools in Galle. Held senior leadership roles including Deputy Head Prefect and President of the Aviation Club, demonstrating early initiative and responsibility.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section class="section" id="experience">
+    <div class="container">
+      <p class="section-label">Professional Experience</p>
+      <h2 class="section-title">Work <em>Experience</em></h2>
+      <div class="section-divider"></div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header">
+            <div>
+              <div class="tl-org">Sri Lanka Telecom (SLT)</div>
+              <div class="tl-title">Electronics & IT Intern</div>
+            </div>
+            <span class="tl-period">2026</span>
+          </div>
+          <div class="tl-body">
+            <ul>
+              <li>Designed and debugged schematic diagrams and PCB layouts using EasyEDA.</li>
+              <li>Programmed embedded microcontroller systems with GSM integration for real-time alerts.</li>
+              <li>Performed hardware testing and signal verification using oscilloscopes, multimeters, and logic analysers.</li>
+              <li>Supported hardware-software integration activities for embedded devices in telecom environments.</li>
+              <li>Collaborated with technical teams on embedded system validation and fault resolution.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="section" id="projects" style="background:var(--bg-alt);">
+    <div class="container">
+      <p class="section-label">What I've Built</p>
+      <h2 class="section-title">Featured <em>Projects</em></h2>
+      <div class="section-divider"></div>
       <div class="projects-grid">
 
         <div class="project-card">
-          <img src="images/underground.png" alt="Underground Wire Detecting Robot">
-          <div class="project-content">
-            <h3>Underground Wire Detecting Robot</h3>
-            <p>Developed a mobile robot using ATmega328p and magnetometer sensors for underground wire detection with real-time visualization.</p>
-            <div class="tech-stack">
-              <span>ATmega328p</span><span>C</span><span>Python</span><span>Embedded Systems</span>
-            </div>
-            <div class="btn-group">
-              <a href="https://github.com/Sandadini/Underground_Wire_Detector_Robot" class="btn btn-primary">GitHub</a>
-              <a href="presentations/Wire Detection Robot.pptx" class="btn btn-outline">Presentation</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="images/underwater.jpg" alt="Underwater Explorer Robot">
-          <div class="project-content">
-            <h3>Underwater Explorer</h3>
-            <p>Built an underwater exploration robot powered by Raspberry Pi 4 with live video streaming and temperature monitoring.</p>
-            <div class="tech-stack">
-              <span>Raspberry Pi</span><span>Python</span><span>IoT</span><span>Robotics</span>
-            </div>
-            <div class="btn-group">
-              <a href="https://github.com/Sandadini/Underwater-Inspection-Rover-using-Raspberry-Pi" class="btn btn-primary">GitHub</a>
-              <a href="presentations/Underwater_Rover_Presentation.pptx" class="btn btn-outline">Presentation</a>
+          <img class="project-img" src="images/underground.png" alt="Underground Wire Detecting Robot">
+          <div class="project-body">
+            <div class="project-cat">Robotics · Embedded</div>
+            <div class="project-title">Underground Wire Detecting Robot</div>
+            <p class="project-desc">Mobile robot using ATmega328p and magnetometer sensors for underground wire detection with real-time Python visualization.</p>
+            <div class="tech-tags"><span class="tech-tag">ATmega328p</span><span class="tech-tag">C</span><span class="tech-tag">Python</span><span class="tech-tag">Sensors</span></div>
+            <div class="project-links">
+              <a href="https://github.com/Sandadini/Underground_Wire_Detector_Robot" class="link-btn link-btn-primary">GitHub</a>
+              <a href="presentations/Wire Detection Robot.pptx" class="link-btn link-btn-outline">Slides</a>
             </div>
           </div>
         </div>
 
         <div class="project-card">
-          <img src="images/voice.jpg" alt="Voice Emergency System">
-          <div class="project-content">
-            <h3>Voice-Activated Emergency Alert System</h3>
-            <p>Designed a smart emergency alert system using Edge Impulse, Arduino Nano 33 BLE, and GSM SIM900.</p>
-            <div class="tech-stack">
-              <span>Arduino</span><span>Edge Impulse</span><span>Machine Learning</span><span>GSM</span>
-            </div>
-            <div class="btn-group">
-              <a href="presentations/Voice-Activated-Emergency-Alert-System.pptx" class="btn btn-outline">Presentation</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="images/citylink.jpg" alt="CityLink App">
-          <div class="project-content">
-            <h3>CityLink Smart Transport App</h3>
-            <p>Created a React Native application for seat booking, QR scanning, and real-time tracking.</p>
-            <div class="tech-stack">
-              <span>React Native</span><span>Node.js</span><span>MySQL</span><span>Figma</span>
-            </div>
-            <div class="btn-group">
-              <a href="https://github.com/Sandadini/CityLink_FrontEnd" class="btn btn-primary">GitHub</a>
+          <img class="project-img" src="images/underwater.jpg" alt="Underwater Explorer Robot">
+          <div class="project-body">
+            <div class="project-cat">Robotics · IoT</div>
+            <div class="project-title">Underwater Explorer Robot</div>
+            <p class="project-desc">Underwater exploration robot powered by Raspberry Pi 4 with live video streaming and temperature monitoring.</p>
+            <div class="tech-tags"><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">Python</span><span class="tech-tag">IoT</span><span class="tech-tag">Robotics</span></div>
+            <div class="project-links">
+              <a href="https://github.com/Sandadini/Underwater-Inspection-Rover-using-Raspberry-Pi" class="link-btn link-btn-primary">GitHub</a>
+              <a href="presentations/Underwater_Rover_Presentation.pptx" class="link-btn link-btn-outline">Slides</a>
             </div>
           </div>
         </div>
 
         <div class="project-card">
-          <img src="images/attendance.jpg" alt="Attendance System">
-          <div class="project-content">
-            <h3>Attendance Management System</h3>
-            <p>Web-based attendance system using Java, PHP, and CodeIgniter with real-time updates.</p>
-            <div class="tech-stack">
-              <span>Java</span><span>PHP</span><span>CodeIgniter</span><span>MySQL</span>
-            </div>
-            <div class="btn-group">
-              <a href="https://github.com/Sandadini/Attendance-Management-System" class="btn btn-primary">GitHub</a>
-              <a href="presentations/Student Attendance System.pptx" class="btn btn-outline">Presentation</a>
+          <img class="project-img" src="images/voice.jpg" alt="Voice Emergency System">
+          <div class="project-body">
+            <div class="project-cat">Edge AI · ML</div>
+            <div class="project-title">Voice-Activated Emergency Alert System</div>
+            <p class="project-desc">Smart emergency alert system using Edge Impulse TinyML on Arduino Nano 33 BLE with GSM SIM900 for SMS dispatch.</p>
+            <div class="tech-tags"><span class="tech-tag">Arduino</span><span class="tech-tag">Edge Impulse</span><span class="tech-tag">TinyML</span><span class="tech-tag">GSM</span></div>
+            <div class="project-links">
+              <a href="presentations/Voice-Activated-Emergency-Alert-System.pptx" class="link-btn link-btn-outline">Slides</a>
             </div>
           </div>
         </div>
 
         <div class="project-card">
-          <img src="images/specializedu.jpg" alt="Special Selection App">
-          <div class="project-content">
-            <h3>Special Selection Mobile Application</h3>
-            <p>Android app that automates student selection workflows and exports CSV results.</p>
-            <div class="tech-stack">
-              <span>Java</span><span>Android Studio</span><span>CSV Export</span><span>Mobile Development</span>
-            </div>
-            <div class="btn-group">
-              <a href="https://github.com/Sandadini/SpecializedU-Student-Specialization-Automation" class="btn btn-primary">GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <img src="images/roadpaint.jpg" alt="Road Safety Case Study">
-          <div class="project-content">
-            <h3>Glowing Road-Marking Paint — Case Study</h3>
-            <p>Research on nano-silicon beads in luminescent paint for road safety improvement.</p>
-            <div class="tech-stack">
-              <span>Research</span><span>Nanotechnology</span><span>Road Safety</span><span>Sustainability</span>
-            </div>
-            <div class="btn-group">
-              <a href="docs/case study report.pdf" class="btn btn-primary">Report</a>
+          <img class="project-img" src="images/citylink.jpg" alt="CityLink App">
+          <div class="project-body">
+            <div class="project-cat">Mobile · Full Stack</div>
+            <div class="project-title">CityLink Smart Transport App</div>
+            <p class="project-desc">React Native application for seat booking, QR scanning, and real-time bus tracking with Node.js backend.</p>
+            <div class="tech-tags"><span class="tech-tag">React Native</span><span class="tech-tag">Node.js</span><span class="tech-tag">MySQL</span><span class="tech-tag">Figma</span></div>
+            <div class="project-links">
+              <a href="https://github.com/Sandadini/CityLink_FrontEnd" class="link-btn link-btn-primary">GitHub</a>
             </div>
           </div>
         </div>
 
         <div class="project-card">
-          <img src="images/linefollower.png" alt="Line Following Robot">
-          <div class="project-content">
-            <h3>Line Following Robot</h3>
-            <p>Autonomous robot using Arduino with Python-based performance analysis.</p>
-            <div class="tech-stack">
-              <span>Arduino</span><span>Python</span><span>Robotics</span><span>Embedded Systems</span>
+          <img class="project-img" src="images/attendance.jpg" alt="Attendance System">
+          <div class="project-body">
+            <div class="project-cat">Web · Backend</div>
+            <div class="project-title">Attendance Management System</div>
+            <p class="project-desc">Web-based attendance system with Java, PHP, and CodeIgniter offering real-time updates and reporting.</p>
+            <div class="tech-tags"><span class="tech-tag">Java</span><span class="tech-tag">PHP</span><span class="tech-tag">CodeIgniter</span><span class="tech-tag">MySQL</span></div>
+            <div class="project-links">
+              <a href="https://github.com/Sandadini/Attendance-Management-System" class="link-btn link-btn-primary">GitHub</a>
+              <a href="presentations/Student Attendance System.pptx" class="link-btn link-btn-outline">Slides</a>
             </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="project-img" src="images/specializedu.jpg" alt="Special Selection App">
+          <div class="project-body">
+            <div class="project-cat">Android · Automation</div>
+            <div class="project-title">Special Selection Mobile Application</div>
+            <p class="project-desc">Android app that automates student specialisation workflows and exports structured CSV results.</p>
+            <div class="tech-tags"><span class="tech-tag">Java</span><span class="tech-tag">Android Studio</span><span class="tech-tag">CSV Export</span></div>
+            <div class="project-links">
+              <a href="https://github.com/Sandadini/SpecializedU-Student-Specialization-Automation" class="link-btn link-btn-primary">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="project-img" src="images/roadpaint.jpg" alt="Road Safety Case Study">
+          <div class="project-body">
+            <div class="project-cat">Research · Nanotechnology</div>
+            <div class="project-title">Glowing Road-Marking Paint</div>
+            <p class="project-desc">Research on nano-silicon beads in luminescent road-marking paint for passive road safety improvement at night.</p>
+            <div class="tech-tags"><span class="tech-tag">Research</span><span class="tech-tag">Nanotechnology</span><span class="tech-tag">Sustainability</span></div>
+            <div class="project-links">
+              <a href="docs/case study report.pdf" class="link-btn link-btn-primary">View Report</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img class="project-img" src="images/linefollower.png" alt="Line Following Robot">
+          <div class="project-body">
+            <div class="project-cat">Robotics · Embedded</div>
+            <div class="project-title">Line Following Robot</div>
+            <p class="project-desc">Autonomous line-following robot using Arduino with Python-based post-run performance analysis and tuning.</p>
+            <div class="tech-tags"><span class="tech-tag">Arduino</span><span class="tech-tag">Python</span><span class="tech-tag">Robotics</span></div>
           </div>
         </div>
 
@@ -564,101 +716,135 @@
     </div>
   </section>
 
-  <section id="skills">
+  <!-- ── SKILLS ── -->
+  <section class="section" id="skills">
     <div class="container">
-      <div class="card">
-        <h2>Technical Skills</h2>
+      <p class="section-label">Technical Expertise</p>
+      <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
+      <div class="section-divider"></div>
+      <div class="skills-wrapper">
 
-        <div class="skills-grid">
-
-          <div>
-            <h3>Programming</h3>
-            <ul>
-              <li>C</li>
-              <li>Python</li>
-              <li>Java</li>
-              <li>C++</li>
-              <li>JavaScript</li>
-              <li>PHP</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Embedded Platforms</h3>
-            <ul>
-              <li>ESP32</li>
-              <li>Arduino</li>
-              <li>STM8S</li>
-              <li>ATmega328p</li>
-              <li>Raspberry Pi</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3>Tools & Software</h3>
-            <ul>
-              <li>EasyEDA</li>
-              <li>Fusion 360</li>
-              <li>Edge Impulse</li>
-              <li>Android Studio</li>
-              <li>Linux</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="activities">
-    <div class="container">
-      <h2>Achievements & Activities</h2>
-
-      <div class="activities-grid">
-
-        <div class="card">
-          <ul>
-            <li>SLIIT Robofest Robotics Competition Participant</li>
-            <li>Perabots Robotics Competition Participant</li>
-            <li>Captain - Women's Chess Team, University of Colombo</li>
-            <li>Member - Sri Lankan Team, Asian University Chess Championship</li>
-          </ul>
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">PHP</span>
         </div>
 
-        <div class="card">
-          <ul>
-            <li>SLUSA Colours Award for Chess</li>
-            <li>Best Female Chess Player, University of Colombo</li>
-            <li>Deputy Head Prefect</li>
-            <li>President - Aviation Club</li>
-          </ul>
+        <div class="skill-group">
+          <div class="skill-group-title">Embedded Platforms</div>
+          <span class="skill-tag">ESP32</span>
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">STM8S</span>
+          <span class="skill-tag">ATmega328p</span>
+          <span class="skill-tag">Raspberry Pi</span>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">Tools & Software</div>
+          <span class="skill-tag">EasyEDA</span>
+          <span class="skill-tag">Fusion 360</span>
+          <span class="skill-tag">Edge Impulse</span>
+          <span class="skill-tag">Android Studio</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Figma</span>
         </div>
 
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <!-- ── ACTIVITIES ── -->
+  <section class="section" id="activities" style="background:var(--bg-alt);">
     <div class="container">
-      <div class="card contact">
-        <h2>Contact Me</h2>
+      <p class="section-label">Beyond the Lab</p>
+      <h2 class="section-title">Achievements &amp; <em>Activities</em></h2>
+      <div class="section-divider"></div>
+      <div class="ach-grid">
 
-        <p>
-          Interested in collaborating on embedded systems, robotics, IoT, or automation projects? Feel free to connect with me.
-        </p>
-
-        <div class="btn-group" style="justify-content:center;">
-          <a href="mailto:sandadini1@gmail.com" class="btn btn-primary">Email Me</a>
-          <a href="https://www.linkedin.com/in/sandadini-bandara-a0107a364/" class="btn btn-outline">LinkedIn</a>
-          <a href="https://github.com/Sandadini" class="btn btn-outline">GitHub</a>
+        <div class="ach-card">
+          <div class="ach-card-title">🏆 Awards & Honours</div>
+          <div class="ach-item">SLUSA Colours Award for Chess</div>
+          <div class="ach-item">Best Female Chess Player, University of Colombo</div>
+          <div class="ach-item">Deputy Head Prefect, Sanghamiththa Balika Vidyalaya</div>
+          <div class="ach-item">President — Aviation Club</div>
         </div>
+
+        <div class="ach-card">
+          <div class="ach-card-title">🤝 Competitions & Representation</div>
+          <div class="ach-item">SLIIT Robofest Robotics Competition Participant</div>
+          <div class="ach-item">Perabots Robotics Competition Participant</div>
+          <div class="ach-item">Captain — Women's Chess Team, University of Colombo</div>
+          <div class="ach-item">Member — Sri Lankan Team, Asian University Chess Championship</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="section" id="contact">
+    <div class="container">
+      <p class="section-label">Let's Connect</p>
+      <h2 class="section-title">Get In <em>Touch</em></h2>
+      <div class="section-divider"></div>
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <h3>Let's Build Something Together</h3>
+          <p>Open to internships, collaborations, and projects in embedded systems, robotics, IoT, and automation.</p>
+          <a href="mailto:sandadini1@gmail.com" class="btn" style="background:white;color:var(--purple);font-weight:700;">Send Me an Email</a>
+        </div>
+
+        <ul class="contact-link-list">
+          <li>
+            <div class="cli-icon">✉️</div>
+            <div>
+              <div class="cli-label">Email</div>
+              <div class="cli-value"><a href="mailto:sandadini1@gmail.com">sandadini1@gmail.com</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="cli-icon">💼</div>
+            <div>
+              <div class="cli-label">LinkedIn</div>
+              <div class="cli-value"><a href="https://www.linkedin.com/in/sandadini-bandara-a0107a364/" target="_blank">Sandadini Bandara</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="cli-icon">🐙</div>
+            <div>
+              <div class="cli-label">GitHub</div>
+              <div class="cli-value"><a href="https://github.com/Sandadini" target="_blank">github.com/Sandadini</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="cli-icon">📍</div>
+            <div>
+              <div class="cli-label">Location</div>
+              <div class="cli-value">Sri Lanka</div>
+            </div>
+          </li>
+        </ul>
+
       </div>
     </div>
   </section>
 
   <footer>
-    © 2026 Sandadini Bandara • Embedded Systems • Robotics • IoT
+    © 2026 Sandadini Bandara &nbsp;·&nbsp; Embedded Systems &nbsp;·&nbsp; Robotics &nbsp;·&nbsp; IoT
   </footer>
+
+  <script>
+    // Nav shadow on scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
 
 </body>
 </html>
